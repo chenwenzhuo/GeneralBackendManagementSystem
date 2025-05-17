@@ -1,10 +1,10 @@
-const http = require('http');
+const express = require('express');
 
 const PORT = 3007;
+const app = express();
 
-const app = http.createServer((req, res) => {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('Hello World!!!\n');
+app.get('/', (req, res) => {
+  res.send('Hello World!!!\n');
 });
 
 app.listen(PORT, () => {
