@@ -29,14 +29,14 @@ const register = (req, res) => {
     .query(sqlStr_checkAcc, regInfo.account)
     .then((results) => {
       // 如果查询结果不为空，说明账号已存在，返回错误信息
-      if (results.length !== 0) {
+      if (results[0].length !== 0) {
         return res.send({status: 1, message: '账号已存在'});
       }
 
       // 账号不存在，对密码进行加密处理
       const encryptedPwd = bcrypt.hashSync(regInfo.password, 10);
       const identity = '用户';
-      const createTime = new Date();
+      const create_time = new Date();
 
       // 将用户信息插入数据库
       const sqlStr_insert = 'insert into users set ?';
@@ -45,12 +45,12 @@ const register = (req, res) => {
           account: regInfo.account,
           password: encryptedPwd,
           identity,
-          createTime,
+          create_time,
           status: 0
         })
         .then((results) => {
           // 检查插入操作是否成功，如果影响行数不为1，则返回注册失败信息
-          if (results.affectedRows !== 1) {
+          if (results[0].affectedRows !== 1) {
             return res.send({status: 1, message: '注册失败，请稍后再试！'});
           }
           // 注册成功，返回成功信息
@@ -84,12 +84,12 @@ const login = (req, res) => {
     .query(sqlStr_checkAcc, loginInfo.account)
     .then((results) => {
       // 检查账号是否存在
-      if (results.length !== 1) {
+      if (results[0].length !== 1) {
         return res.send({status: 1, message: '账号不存在'});
       }
 
       // 验证密码是否正确
-      const compareResult = bcrypt.compareSync(loginInfo.password, results[0].password);
+      const compareResult = bcrypt.compareSync(loginInfo.password, results[0][0].password);
       if (!compareResult) {
         return res.send({status: 1, message: '账号或密码错误'});
       }
@@ -101,7 +101,7 @@ const login = (req, res) => {
 
       // 生成用户信息并去除敏感字段
       const userInfo = _.omit(
-        _.cloneDeep(results[0]),
+        _.cloneDeep(results[0][0]),
         ['password', 'img_url', 'create_time', 'update_time']
       );
 
