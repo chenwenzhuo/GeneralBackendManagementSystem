@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const Joi = require('joi');
 
 const app = express();
 
@@ -21,8 +22,8 @@ app.use((req, res, next) => {
   next();
 });
 
-const loginRouter = require('./router/reg_login');
-app.use('/api', loginRouter);
+const regLoginRouter = require('./router/reg_login');
+app.use('/api', regLoginRouter);
 
 const jwtConfig = require('./jwt_config');
 const {expressjwt} = require('express-jwt');
@@ -33,6 +34,17 @@ app.use(
   })
     .unless({path: [/^\/api\//]})
 );
+
+// 对不符合joi规则的情况进行报错
+app.use((err, req, res, next) => {
+  if (err instanceof Joi.ValidationError) {
+    res.send({
+      status: 1,
+      message: '输入的数据不符合验证规则',
+    })
+  }
+  next();
+});
 
 app.get('/', (req, res) => {
   res.send('Hello World!!!\n');
