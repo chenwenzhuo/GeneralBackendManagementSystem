@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import {Button} from 'ant-design-vue';
+import {SyncOutlined} from '@ant-design/icons-vue';
 import HelloWorld from './components/HelloWorld.vue'
+import {h} from "vue";
 </script>
 
 <template>
@@ -16,6 +19,9 @@ import HelloWorld from './components/HelloWorld.vue'
     <router-link to="/" style="margin-right: 10px">Home</router-link>
     <router-link to="/about">About</router-link>
     <router-view></router-view>
+  </div>
+  <div class="ant-area">
+    <Button type="primary" :icon="h(SyncOutlined)">Antd Button</Button>
   </div>
 </template>
 
