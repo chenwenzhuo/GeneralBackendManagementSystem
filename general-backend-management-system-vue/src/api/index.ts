@@ -2,7 +2,7 @@ import axios, {AxiosInstance} from "axios";
 
 // 创建 Axios 实例
 const axiosInstance: AxiosInstance = axios.create({
-    baseURL: 'http://127.0.0.1:3007', // 基础 API 地址
+    baseURL: '/api', // 基础 API 地址
     timeout: 10000, // 10秒超时
     headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
