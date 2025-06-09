@@ -19,7 +19,7 @@ import HelloWorld from './components/HelloWorld.vue'
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -33,5 +33,11 @@ import HelloWorld from './components/HelloWorld.vue'
 
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
+}
+
+$bgc-router: #e2b050;
+.router-area {
+  margin-top: 20px;
+  background-color: $bgc-router;
 }
 </style>
