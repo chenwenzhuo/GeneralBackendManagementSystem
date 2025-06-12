@@ -6,13 +6,13 @@
 
 ### 📦 工具版本要求
 
-| 工具                  | 推荐版本                   |
-|---------------------|------------------------|
-| ESLint              | ≥ 9.x                  |
-| Prettier            | ≥ 3.5.x                |
-| TypeScript          | ≥ 4.9                  |
-| Vue                 | 3.x                    |
-| Node.js             | ≥ 16.x                 |
+| 工具                      | 推荐版本                     |
+| ------------------------- | ---------------------------- |
+| ESLint                    | ≥ 9.x                        |
+| Prettier                  | ≥ 3.5.x                      |
+| TypeScript                | ≥ 4.9                        |
+| Vue                       | 3.x                          |
+| Node.js                   | ≥ 16.x                       |
 | 包管理器（pnpm/yarn/npm） | 均可，推荐 pnpm 或 npm ≥ 9.x |
 
 ---
@@ -111,12 +111,8 @@ npm run husky:init
 ```json
 {
   "lint-staged": {
-    "**/*.{js,ts,vue}": [
-      "eslint --fix"
-    ],
-    "**/*.{js,ts,vue,json,css,md}": [
-      "prettier --write"
-    ]
+    "**/*.{js,ts,vue}": ["eslint --fix"],
+    "**/*.{js,ts,vue,json,css,md}": ["prettier --write"]
   }
 }
 ```
