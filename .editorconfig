@@ -1,0 +1,35 @@
+# 顶层 EditorConfig 文件
+root = true
+
+# 所有文件通用设置
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+
+# markdown 文件不要去除尾部空格（避免破坏格式）
+[*.md]
+trim_trailing_whitespace = false
+
+# JSON 文件特殊设置（仍使用2空格缩进）
+[*.json]
+indent_style = space
+indent_size = 2
+
+# YAML 文件（如 CI 配置）
+[*.{yml,yaml}]
+indent_style = space
+indent_size = 2
+
+# Vue 文件
+[*.vue]
+indent_style = space
+indent_size = 2
+
+# TypeScript 和 JavaScript 文件
+[*.{ts,tsx,js,jsx}]
+indent_style = space
+indent_size = 2
