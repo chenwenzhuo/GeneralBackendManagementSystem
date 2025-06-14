@@ -1,0 +1,55 @@
+# === 通用忽略项 ===
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# === Node.js 项目相关 ===
+node_modules/
+dist/
+coverage/
+.env
+.env.*.local
+.cache/
+*.local
+
+# === Vue 项目相关 ===
+*.local
+*.env
+*.env.*.local
+.vitepress/
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# === 构建输出目录（根据你项目具体设置而定）===
+**/dist/
+**/build/
+**/.output/
+
+# === Husky 自动生成的 hook 文件 ===
+.husky/_/
+
+# === Lint / Format 缓存 ===
+eslintcache
+**/.eslintcache
+.prettier-cache/
+stylelintcache
+
+# === macOS / Linux / Windows 系统文件 ===
+*.bak
+*.tmp
+*.temp
+*.orig
+*.swp
+
+# === Optional: 锁文件（如你只用 pnpm）===
+package-lock.json
+yarn.lock
