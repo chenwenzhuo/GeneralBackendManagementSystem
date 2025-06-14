@@ -25,7 +25,10 @@ module.exports = {
     {
       files: ['*.js'],
       parser: 'espree',
-      extends: ['eslint:recommended'],
+      extends: ['eslint:recommended', 'plugin:prettier/recommended'],
+      rules: {
+        '@typescript-eslint/no-var-requires': 'off',
+      },
     },
     {
       files: ['*.ts', '*.vue'],
@@ -34,12 +37,16 @@ module.exports = {
         parser: '@typescript-eslint/parser',
       },
       extends: ['plugin:vue/vue3-recommended', 'plugin:@typescript-eslint/recommended', 'prettier'],
+      rules: {
+        'prettier/prettier': 'error',
+        '@typescript-eslint/no-explicit-any': 'off', // 加上这一行
+      },
     },
   ],
   rules: {
     // 通用规则
     'no-unused-vars': 'off', // 由 TS 接管
-    'no-console': 'warn',
+    'no-console': 'off',
     'no-debugger': 'warn',
 
     // Vue 相关
