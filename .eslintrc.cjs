@@ -14,16 +14,41 @@ module.exports = {
     ecmaVersion: 2021,
     sourceType: 'module',
   },
-  plugins: ['@typescript-eslint', 'prettier'],
+  plugins: ['@typescript-eslint'],
   extends: [
     'eslint:recommended',
     'plugin:vue/vue3-recommended',
     'plugin:@typescript-eslint/recommended',
-    'prettier',
+    'prettier', // 注意：这将关闭 ESLint 中的格式类规则，由 Prettier 接管
+  ],
+  overrides: [
+    {
+      files: ['*.js'],
+      parser: 'espree',
+      extends: ['eslint:recommended'],
+    },
+    {
+      files: ['*.ts', '*.vue'],
+      parser: 'vue-eslint-parser',
+      parserOptions: {
+        parser: '@typescript-eslint/parser',
+      },
+      extends: ['plugin:vue/vue3-recommended', 'plugin:@typescript-eslint/recommended', 'prettier'],
+    },
   ],
   rules: {
-    'prettier/prettier': 'error',
+    // 通用规则
+    'no-unused-vars': 'off', // 由 TS 接管
+    'no-console': 'warn',
+    'no-debugger': 'warn',
+
+    // Vue 相关
     'vue/multi-word-component-names': 'off',
+    'vue/no-v-html': 'warn',
+
+    // TypeScript 相关
     '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+    '@typescript-eslint/ban-ts-comment': 'off',
   },
 };

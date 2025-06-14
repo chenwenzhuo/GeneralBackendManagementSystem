@@ -1,3 +1,21 @@
+# 忽略依赖包
 node_modules
 dist
+build
+coverage
+
+# 忽略版本控制文件
+.git
 .husky
+
+# 忽略 IDE 和缓存
+.vscode
+.idea
+*.log
+*.cache
+*.tmp
+*.DS_Store
+
+# 业务中特定忽略
+.env*
+public/*
