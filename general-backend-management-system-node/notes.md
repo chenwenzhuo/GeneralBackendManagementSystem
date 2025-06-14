@@ -61,7 +61,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const app = express();
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 //...
 ```
@@ -72,4 +72,3 @@ app.use(bodyParser.json());
 
 - `extended: false`：表示使用 `querystring` 库来解析请求体数据。解析后的对象是一个简单的键值对，不支持嵌套对象和数组。
 - `extended: true`：表示使用 `qs` 库来解析请求体数据。解析后的对象支持嵌套对象和数组，功能更强大。
-
