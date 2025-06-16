@@ -40,6 +40,7 @@ module.exports = {
       rules: {
         'prettier/prettier': 'error',
         '@typescript-eslint/no-explicit-any': 'off', // 加上这一行
+        'vue/multi-word-component-names': 'off',
       },
     },
   ],
