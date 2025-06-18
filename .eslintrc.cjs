@@ -14,7 +14,7 @@ module.exports = {
     ecmaVersion: 2021,
     sourceType: 'module',
   },
-  plugins: ['@typescript-eslint'],
+  plugins: ['@typescript-eslint', 'simple-import-sort'],
   extends: [
     'eslint:recommended',
     'plugin:vue/vue3-recommended',
@@ -49,6 +49,7 @@ module.exports = {
     'no-unused-vars': 'off', // 由 TS 接管
     'no-console': 'off',
     'no-debugger': 'warn',
+    'simple-import-sort/imports': 'error',
 
     // Vue 相关
     'vue/multi-word-component-names': 'off',
