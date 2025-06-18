@@ -5,18 +5,7 @@
         <h1 class="header-title">{{ t('login.header.title') }}</h1>
         <div class="header-shortcuts">
           <div class="welcome">{{ t('login.header.welcome') }}</div>
-          <Dropdown v-model:open="dropdownVisible">
-            <Button type="link" :icon="h(TranslationOutlined)">
-              {{ t('login.header.switchLang') }}
-            </Button>
-
-            <template #overlay>
-              <Menu @click="handleMenuClick">
-                <MenuItem key="zh">简体中文</MenuItem>
-                <MenuItem key="en">English</MenuItem>
-              </Menu>
-            </template>
-          </Dropdown>
+          <LangSwitch />
         </div>
       </div>
     </LayoutHeader>
@@ -35,22 +24,13 @@
 </template>
 
 <script setup lang="ts">
-import { TranslationOutlined } from '@ant-design/icons-vue';
-import {
-  Button,
-  Dropdown,
-  Layout,
-  LayoutContent,
-  LayoutFooter,
-  LayoutHeader,
-  Menu,
-  MenuItem,
-} from 'ant-design-vue';
-import { computed, h, ref } from 'vue';
+import { Layout, LayoutContent, LayoutFooter, LayoutHeader } from 'ant-design-vue';
+import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-const { t, locale } = useI18n();
-const dropdownVisible = ref(false);
+import LangSwitch from '@/components/LangSwitch.vue';
+
+const { t } = useI18n();
 
 const footerText = computed(() => ({
   techs: [
@@ -62,11 +42,6 @@ const footerText = computed(() => ({
   ],
   copyright: [t('login.footer.copyright')],
 }));
-
-function handleMenuClick(e: any) {
-  locale.value = e.key;
-  dropdownVisible.value = false;
-}
 </script>
 
 <style scoped lang="scss">
