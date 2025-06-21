@@ -9,7 +9,13 @@
         </div>
       </div>
     </LayoutHeader>
-    <LayoutContent class="login-body"></LayoutContent>
+
+    <LayoutContent class="login-body">
+      <div class="body-content">
+        <LoginRegisterPanel />
+      </div>
+    </LayoutContent>
+
     <LayoutFooter class="login-footer">
       <div class="footer-content">
         <ul class="footer-techs">
@@ -29,6 +35,7 @@ import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 import LangSwitch from '@/components/LangSwitch.vue';
+import LoginRegisterPanel from '@/pages/login/LoginRegisterPanel.vue';
 
 const { t } = useI18n();
 
@@ -82,6 +89,14 @@ $content-width: 1200px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+
+    .body-content {
+      @include login-content;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding-right: 50px;
+    }
   }
 
   .login-footer {
