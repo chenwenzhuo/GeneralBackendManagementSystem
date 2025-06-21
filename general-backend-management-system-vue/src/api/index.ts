@@ -1,4 +1,5 @@
-import axios, { AxiosInstance } from 'axios';
+import type { AxiosInstance } from 'axios';
+import axios from 'axios';
 
 // 创建 Axios 实例
 const axiosInstance: AxiosInstance = axios.create({

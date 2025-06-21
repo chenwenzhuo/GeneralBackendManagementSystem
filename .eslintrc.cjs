@@ -51,6 +51,7 @@ module.exports = {
     'no-debugger': 'warn',
     'simple-import-sort/imports': 'error',
     'unused-imports/no-unused-imports': 'error',
+    'vue/attribute-hyphenation': ['error', 'always'], // 强制模板中的属性使用短横线形式
 
     // Vue 相关
     'vue/multi-word-component-names': 'off',
@@ -60,5 +61,13 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
     '@typescript-eslint/ban-ts-comment': 'off',
+
+    '@typescript-eslint/consistent-type-imports': [
+      'error',
+      {
+        fixStyle: 'separate-type-imports', // 强制类型导入必须使用单独的import语句
+        prefer: 'type-imports', // 强制使用 type 关键字
+      },
+    ],
   },
 };
