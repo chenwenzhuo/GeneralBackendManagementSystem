@@ -7,7 +7,9 @@
       </div>
     </LayoutSider>
     <Layout class="admin-layout-main">
-      <LayoutHeader class="admin-layout-header">layout header</LayoutHeader>
+      <LayoutHeader class="admin-layout-header">
+        <HeaderView />
+      </LayoutHeader>
       <LayoutContent class="admin-layout-content">
         <main class="admin-content">
           <RouterView />
@@ -21,6 +23,7 @@
 import { Layout, LayoutContent, LayoutHeader, LayoutSider } from 'ant-design-vue';
 import { useI18n } from 'vue-i18n';
 
+import HeaderView from '@/components/header/HeaderView.vue';
 import NavMenu from '@/components/nav-menu/NavMenu.vue';
 
 const { t, locale } = useI18n();
@@ -53,6 +56,10 @@ const { t, locale } = useI18n();
   .admin-layout-main {
     :deep(.ant-layout-header) {
       background-color: inherit;
+    }
+
+    .admin-layout-header {
+      padding: 0 15px;
     }
 
     .admin-layout-content {
