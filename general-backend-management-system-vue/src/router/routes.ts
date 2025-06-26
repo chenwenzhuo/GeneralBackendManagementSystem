@@ -4,12 +4,22 @@ const routes: any[] = [
     redirect: '/login',
   },
   {
-    path: '/about',
-    component: () => import('@/pages/AboutView.vue'),
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/pages/login/Login.vue'),
   },
   {
-    path: '/login',
-    component: () => import('@/pages/login/Login.vue'),
+    path: '/admin',
+    name: 'Admin',
+    component: () => import('@/pages/admin/AdminLayout.vue'),
+    redirect: '/admin/home',
+    children: [
+      {
+        path: 'home',
+        name: 'Home',
+        component: () => import('@/pages/home/HomeView.vue'),
+      },
+    ],
   },
   {
     path: '/:pathMatch(.*)*',
