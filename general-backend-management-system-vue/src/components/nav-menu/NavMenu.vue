@@ -17,7 +17,7 @@ import { cloneDeep } from 'lodash-es';
 import { reactive } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-import { useNavMenu } from '@/components/NavMenu/useNavMenu';
+import { useNavMenu } from '@/components/nav-menu/useNavMenu';
 
 const { t } = useI18n();
 const { navMenuConfig } = useNavMenu();

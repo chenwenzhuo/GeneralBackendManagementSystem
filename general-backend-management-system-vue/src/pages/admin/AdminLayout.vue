@@ -21,7 +21,7 @@
 import { Layout, LayoutContent, LayoutHeader, LayoutSider } from 'ant-design-vue';
 import { useI18n } from 'vue-i18n';
 
-import NavMenu from '@/components/NavMenu/NavMenu.vue';
+import NavMenu from '@/components/nav-menu/NavMenu.vue';
 
 const { t, locale } = useI18n();
 </script>
