@@ -2,7 +2,7 @@
   <Layout class="login-layout">
     <LayoutHeader class="login-header">
       <div class="header-content">
-        <h1 class="header-title">{{ t('login.header.title') }}</h1>
+        <h1 class="header-title">{{ t('message.title') }}</h1>
         <div class="header-shortcuts">
           <div class="welcome">{{ t('login.header.welcome') }}</div>
           <LangSwitch />
