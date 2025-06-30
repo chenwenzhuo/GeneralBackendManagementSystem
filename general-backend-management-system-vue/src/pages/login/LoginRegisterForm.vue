@@ -1,16 +1,16 @@
 <template>
   <div class="login-form-container">
-    <Form ref="loginFormRef" :model="loginFormData" :rules="rules" layout="vertical">
+    <Form ref="loginRegFormRef" :model="loginRegFormData" :rules="rules" layout="vertical">
       <FormItem :label="t('login.content.username')" name="username">
         <Input
-          v-model:value="loginFormData.username"
+          v-model:value="loginRegFormData.username"
           :placeholder="t('login.content.usernamePlaceholder')"
           allow-clear
         />
       </FormItem>
       <FormItem :label="t('login.content.password')" name="password">
         <Input
-          v-model:value="loginFormData.password"
+          v-model:value="loginRegFormData.password"
           :placeholder="t('login.content.passwordPlaceholder')"
           type="password"
           allow-clear
@@ -22,7 +22,7 @@
         name="passwordConfirm"
       >
         <Input
-          v-model:value="loginFormData.passwordConfirm"
+          v-model:value="loginRegFormData.passwordConfirm"
           :placeholder="t('login.content.passwordConfirmPlaceholder')"
           type="password"
           allow-clear
@@ -34,11 +34,13 @@
       <ResetPwdModal />
     </Flex>
 
-    <Button type="primary" class="login-button">{{ submitBtnText[formType] }}</Button>
+    <Button type="primary" class="login-button" @click="submit">
+      {{ submitBtnText[formType] }}
+    </Button>
 
     <Flex v-if="formType === 'login'" justify="center" align="center">
       <span>{{ t('login.content.noAccount') }}</span>
-      <Button type="link" size="small" @click="switchToRegister">
+      <Button type="link" size="small" @click="() => switchTab('register')">
         {{ t('login.content.registerNow') }}
       </Button>
     </Flex>
@@ -46,25 +48,28 @@
 </template>
 
 <script setup lang="ts">
-import { Button, Flex, Form, FormItem, Input } from 'ant-design-vue';
+import { Button, Flex, Form, FormItem, Input, message } from 'ant-design-vue';
 import { computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { useRouter } from 'vue-router';
 
+import { login, register } from '@/api/LoginRegister';
 import { useLoginValidationRules } from '@/pages/login/loginCommon';
 import ResetPwdModal from '@/pages/login/ResetPwdModal.vue';
 
 export type LoginRegisterFormType = 'login' | 'register';
 const props = defineProps<{ formType: LoginRegisterFormType }>();
-const emits = defineEmits(['switchReg']);
+const emits = defineEmits(['switchTab']);
 
 const { t } = useI18n();
-const loginFormRef = ref(null);
-const loginFormData = ref({
+const router = useRouter();
+const loginRegFormRef = ref(null);
+const loginRegFormData = ref({
   username: '',
   password: '',
   passwordConfirm: '',
 });
-const validationRules = useLoginValidationRules(loginFormData);
+const validationRules = useLoginValidationRules(loginRegFormData);
 
 const rules = computed(() => {
   const commonRules = {
@@ -84,18 +89,52 @@ const submitBtnText = computed(() => ({
   register: t('login.content.register'),
 }));
 
+function submit() {
+  const fnMap = { register: submitRegister, login: submitLogin };
+  loginRegFormRef.value?.validate().then(() => {
+    fnMap[props.formType]?.();
+  });
+}
+
+async function submitRegister() {
+  const { username, password } = loginRegFormData.value;
+  const res = await register({ username, password });
+
+  if (res.status === 0) {
+    message.success(res.message);
+    resetForm();
+    switchTab('login');
+  } else {
+    message.error(res.message);
+  }
+}
+
+async function submitLogin() {
+  const { username, password } = loginRegFormData.value;
+  const res = await login({ username, password });
+
+  if (res.status === 0) {
+    message.success(res.message);
+    resetForm();
+    localStorage.setItem('token', res.token);
+    await router.replace('/admin/home');
+  } else {
+    message.error(res.message);
+  }
+}
+
 function resetForm() {
-  loginFormData.value = {
+  loginRegFormData.value = {
     username: '',
     password: '',
     passwordConfirm: '',
   };
-  loginFormRef.value.resetFields();
-  loginFormRef.value.clearValidate();
+  loginRegFormRef.value.resetFields();
+  loginRegFormRef.value.clearValidate();
 }
 
-function switchToRegister() {
-  emits('switchReg');
+function switchTab(tab: LoginRegisterFormType) {
+  emits('switchTab', tab);
 }
 
 defineExpose({ resetForm });

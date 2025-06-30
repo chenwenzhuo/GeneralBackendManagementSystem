@@ -8,7 +8,7 @@
       ref="loginRegFormRef"
       :form-type="activeTabKey"
       class="login-reg-form"
-      @switch-reg="switchToRegister"
+      @switch-tab="switchTab"
     />
   </Card>
 </template>
@@ -25,9 +25,9 @@ const { t } = useI18n();
 const activeTabKey = ref<LoginRegisterFormType>('login');
 const loginRegFormRef = ref(null);
 
-function switchToRegister() {
+function switchTab(tab: LoginRegisterFormType) {
   onTabsChange();
-  activeTabKey.value = 'register';
+  activeTabKey.value = tab;
 }
 
 function onTabsChange() {
