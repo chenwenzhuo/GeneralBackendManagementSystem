@@ -5,6 +5,7 @@ export default {
     home: '首页',
     about: '关于',
     title: '通用后台管理系统',
+    settings: '设置',
   },
   login: {
     header: {

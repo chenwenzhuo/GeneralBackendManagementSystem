@@ -5,6 +5,7 @@ export default {
     home: 'Home',
     about: 'About',
     title: 'General Backend Management System',
+    settings: 'Settings',
   },
   login: {
     header: {

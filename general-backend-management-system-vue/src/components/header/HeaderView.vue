@@ -1,11 +1,11 @@
 <template>
   <Flex align="center" class="heder-flex-wrapper">
     <div class="header-welcome-text">欢迎登录</div>
-    <MessageModal />
-    <Avatar src="https://picsum.photos/200" class="header-avatar" alt="avatar" />
-    <Dropdown placement="bottomRight">
-      <SettingOutlined />
 
+    <Avatar src="https://picsum.photos/200" alt="avatar" />
+    <MessageModal class="msg-modal" />
+    <Dropdown placement="bottomRight">
+      <Button type="link" :icon="h(SettingOutlined)" class="setting-icon-btn" />
       <template #overlay>
         <Menu>
           <MenuItem>
@@ -25,7 +25,8 @@
 
 <script setup lang="ts">
 import { SettingOutlined } from '@ant-design/icons-vue';
-import { Avatar, Dropdown, Flex, Menu, MenuItem } from 'ant-design-vue';
+import { Avatar, Button, Dropdown, Flex, Menu, MenuItem } from 'ant-design-vue';
+import { h } from 'vue';
 
 import MessageModal from '@/components/header/MessageModal.vue';
 </script>
@@ -40,8 +41,13 @@ import MessageModal from '@/components/header/MessageModal.vue';
     margin-right: auto;
   }
 
-  .header-avatar {
+  .msg-modal {
     margin: 0 20px;
+  }
+
+  .setting-icon-btn {
+    font-size: 20px;
+    padding: 0;
   }
 }
 </style>
