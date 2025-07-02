@@ -10,9 +10,13 @@ module.exports = {
     parser: {
       js: 'espree',
       ts: '@typescript-eslint/parser',
+      tsx: '@typescript-eslint/parser',
     },
     ecmaVersion: 2021,
     sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    },
   },
   plugins: ['@typescript-eslint', 'simple-import-sort', 'unused-imports'],
   extends: [
@@ -21,6 +25,11 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'prettier', // 注意：这将关闭 ESLint 中的格式类规则，由 Prettier 接管
   ],
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
   overrides: [
     {
       files: ['*.js'],
@@ -39,8 +48,33 @@ module.exports = {
       extends: ['plugin:vue/vue3-recommended', 'plugin:@typescript-eslint/recommended', 'prettier'],
       rules: {
         'prettier/prettier': 'error',
-        '@typescript-eslint/no-explicit-any': 'off', // 加上这一行
+        '@typescript-eslint/no-explicit-any': 'off',
         'vue/multi-word-component-names': 'off',
+      },
+    },
+    {
+      files: ['*.tsx', '*.jsx'],
+      parser: '@typescript-eslint/parser',
+      plugins: ['react', 'react-hooks'],
+      extends: [
+        'plugin:react/recommended',
+        'plugin:react-hooks/recommended',
+        'plugin:prettier/recommended',
+      ],
+      rules: {
+        'prettier/prettier': 'error',
+        '@typescript-eslint/no-explicit-any': 'off',
+        'react/react-in-jsx-scope': 'off',
+        'react/prop-types': 'off',
+      },
+    },
+    {
+      files: ['*.ts', '*.tsx'],
+      parser: '@typescript-eslint/parser',
+      extends: ['plugin:@typescript-eslint/recommended'],
+      rules: {
+        'prettier/prettier': 'error',
+        '@typescript-eslint/no-explicit-any': 'off',
       },
     },
   ],
@@ -50,6 +84,7 @@ module.exports = {
     'no-console': 'off',
     'no-debugger': 'warn',
     'simple-import-sort/imports': 'error',
+    'simple-import-sort/exports': 'error',
     'unused-imports/no-unused-imports': 'error',
     'vue/attribute-hyphenation': ['error', 'always'], // 强制模板中的属性使用短横线形式
 
