@@ -1,0 +1,76 @@
+$content-width: 1200px;
+
+@mixin login-content {
+  width: $content-width;
+  height: 100%;
+  margin: 0 auto;
+  color: #1e1e1e;
+}
+
+.login-layout {
+  width: 100%;
+  height: 100%;
+
+  .login-header {
+    height: 64px;
+    background-color: inherit;
+
+    .header-content {
+      @include login-content;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .header-shortcuts {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+
+  .login-body {
+    background-image: url('@/assets/code.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    .body-content {
+      @include login-content;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding-right: 50px;
+    }
+  }
+
+  .login-footer {
+    height: 64px;
+    background-color: inherit;
+
+    .footer-content {
+      @include login-content;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .footer-techs {
+        display: flex;
+
+        li {
+          display: flex;
+          align-items: center;
+
+          &:not(:last-child)::after {
+            content: '';
+            display: inline-block;
+            width: 1px;
+            height: 70%;
+            margin: 0 8px;
+            background-color: #1e1e1e;
+          }
+        }
+      }
+    }
+  }
+}
