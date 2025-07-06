@@ -21,6 +21,11 @@ $content-width: 1200px;
       justify-content: space-between;
       align-items: center;
 
+      .header-title {
+        font-size: 20px;
+        font-weight: bold;
+      }
+
       .header-shortcuts {
         display: flex;
         align-items: center;
