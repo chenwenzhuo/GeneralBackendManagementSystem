@@ -1,25 +1,53 @@
+import { Spin } from 'antd';
+import { lazy, Suspense } from 'react';
 import { createBrowserRouter, Navigate } from 'react-router';
 
-import App from '../App.tsx';
+const Login = lazy(() => import('../pages/login/Login'));
+const AdminLayout = lazy(() => import('../pages/admin/AdminLayout'));
+const Home = lazy(() => import('../pages/home/Home'));
+const NotFound = lazy(() => import('../pages/error/NotFound'));
+
+const CustomSuspense = ({ children }: any) => <Suspense fallback={<Spin />}>{children}</Suspense>;
 
 const router = createBrowserRouter([
   {
     path: '/',
-    Component: App,
+    element: <Navigate to="/login" replace />,
+  },
+  {
+    path: '/login',
+    element: (
+      <CustomSuspense>
+        <Login />
+      </CustomSuspense>
+    ),
+  },
+  {
+    path: '/admin',
+    element: (
+      <CustomSuspense>
+        <AdminLayout />
+      </CustomSuspense>
+    ),
     children: [
-      {
-        index: true,
-        element: <Navigate to="home" replace />,
-      },
+      { index: true, element: <Navigate to="home" replace /> },
       {
         path: 'home',
-        element: <div>Home</div>,
-      },
-      {
-        path: 'about',
-        element: <div>About</div>,
+        element: (
+          <CustomSuspense>
+            <Home />
+          </CustomSuspense>
+        ),
       },
     ],
+  },
+  {
+    path: '*',
+    element: (
+      <CustomSuspense>
+        <NotFound />
+      </CustomSuspense>
+    ),
   },
 ]);
 
