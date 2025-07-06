@@ -1,0 +1,99 @@
+/* === 通用 reset 样式表 (适用于现代 Web 项目) === */
+
+/* 1. 移除所有元素的 margin 和 padding */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 2. 去除默认列表样式 */
+ol,
+ul {
+  list-style: none;
+}
+
+/* 3. 去除链接下划线并设为继承颜色 */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 4. 去除表单控件的默认样式 */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+/* 5. 设置图片最大宽度和响应式 */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* 6. 去除表格边距 */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* 7. 保证 HTML5 语义标签有正常显示 */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+main,
+nav,
+section,
+summary {
+  display: block;
+}
+
+/* 8. 设置根字体大小和基础行高 */
+html {
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 9. 设置 body 默认字体、颜色、背景 */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    sans-serif;
+  color: #333;
+  background-color: #fff;
+  text-rendering: optimizeLegibility;
+  min-height: 100vh;
+}
+
+/* 10. 防止 iOS 自动调整字体大小 */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* 11. 设置按钮鼠标样式 */
+button {
+  cursor: pointer;
+}
+
+/* 12. 禁用用户选择文本（可选） */
+/* body {
+  user-select: none;
+} */

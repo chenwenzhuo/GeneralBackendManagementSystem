@@ -1,4 +1,5 @@
-import './index.css';
+import './assets/css/reset.css';
+import './assets/css/style.css';
 import './i18n';
 
 import { StrictMode } from 'react';
