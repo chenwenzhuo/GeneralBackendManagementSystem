@@ -2,10 +2,10 @@ import { Spin } from 'antd';
 import { lazy, Suspense } from 'react';
 import { createBrowserRouter, Navigate } from 'react-router';
 
-const Login = lazy(() => import('../pages/login/Login'));
-const AdminLayout = lazy(() => import('../pages/admin/AdminLayout'));
-const Home = lazy(() => import('../pages/home/Home'));
-const NotFound = lazy(() => import('../pages/error/NotFound'));
+const Login = lazy(() => import('@/pages/login/Login'));
+const AdminLayout = lazy(() => import('@/pages/admin/AdminLayout'));
+const Home = lazy(() => import('@/pages/home/Home'));
+const NotFound = lazy(() => import('@/pages/error/NotFound'));
 
 const CustomSuspense = ({ children }: any) => <Suspense fallback={<Spin />}>{children}</Suspense>;
 
