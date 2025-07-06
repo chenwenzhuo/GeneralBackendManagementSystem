@@ -1,9 +1,10 @@
 import './App.css';
 
 import { SwapOutlined } from '@ant-design/icons';
-import { Button } from 'antd';
+import { Button, Space } from 'antd';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link, Outlet } from 'react-router';
 
 import viteLogo from '/vite.svg';
 
@@ -40,6 +41,13 @@ function App() {
         </p>
       </div>
       <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
+      <div>
+        <Space>
+          <Link to="/home">Home</Link>
+          <Link to="/about">About</Link>
+        </Space>
+        <Outlet />
+      </div>
     </>
   );
 }
