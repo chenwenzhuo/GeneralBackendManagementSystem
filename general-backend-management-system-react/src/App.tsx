@@ -1,5 +1,6 @@
 import './App.css';
 
+import { SwapOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -20,7 +21,7 @@ function App() {
   return (
     <>
       <h1>{t('message.hello')}</h1>
-      <Button type={'primary'} onClick={switchLang}>
+      <Button type={'primary'} icon={<SwapOutlined />} onClick={switchLang}>
         switch lang
       </Button>
       <div>
