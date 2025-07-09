@@ -76,7 +76,7 @@ import { Button, Form, FormItem, Input, Modal } from 'ant-design-vue';
 import { computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-import { useLoginValidationRules } from '@/pages/login/loginCommon';
+import { useValidationRules } from '@/pages/login/loginRegisterCommon';
 
 const { t } = useI18n();
 const isModalVisible = ref(false);
@@ -92,7 +92,7 @@ const step2FormData = ref({
   passwordConfirm: '',
 });
 
-const validationRules = useLoginValidationRules(step2FormData);
+const validationRules = useValidationRules(step2FormData);
 const step1Rules = computed(() => ({
   username: validationRules.username,
   email: validationRules.email,

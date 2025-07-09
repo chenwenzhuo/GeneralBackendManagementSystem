@@ -1,7 +1,7 @@
 import type { Ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-export const useLoginValidationRules = (formData?: Ref<Record<string, any>>) => {
+export const useValidationRules = (formData?: Ref<Record<string, any>>) => {
   const { t } = useI18n();
 
   return {

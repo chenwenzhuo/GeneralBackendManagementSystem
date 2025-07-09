@@ -54,7 +54,7 @@ import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 
 import { login, register } from '@/api/LoginRegister';
-import { useLoginValidationRules } from '@/pages/login/loginCommon';
+import { useValidationRules } from '@/pages/login/loginRegisterCommon';
 import ResetPwdModal from '@/pages/login/ResetPwdModal.vue';
 
 export type LoginRegisterFormType = 'login' | 'register';
@@ -69,7 +69,7 @@ const loginRegFormData = ref({
   password: '',
   passwordConfirm: '',
 });
-const validationRules = useLoginValidationRules(loginRegFormData);
+const validationRules = useValidationRules(loginRegFormData);
 
 const rules = computed(() => {
   const commonRules = {
