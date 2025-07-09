@@ -1,0 +1,13 @@
+.login-panel-card {
+  width: 420px;
+
+  :global(.ant-tabs-nav-list) {
+    width: 100%;
+
+    :global(.ant-tabs-tab) {
+      width: 50%;
+      display: flex;
+      justify-content: center;
+    }
+  }
+}

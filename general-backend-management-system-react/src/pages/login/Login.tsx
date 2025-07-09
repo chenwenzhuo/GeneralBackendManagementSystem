@@ -2,6 +2,7 @@ import { Layout } from 'antd';
 import { useTranslation } from 'react-i18next';
 
 import LangSwitch from '@/components/lang-switch/LangSwitch.tsx';
+import LoginRegisterPanel from '@/pages/login/LoginRegisterPanel.tsx';
 
 import styles from './Login.module.scss';
 
@@ -35,7 +36,9 @@ export default function Login() {
         </div>
       </Header>
       <Content className={styles['login-body']}>
-        <div className={styles['body-content']}>Content</div>
+        <div className={styles['body-content']}>
+          <LoginRegisterPanel />
+        </div>
       </Content>
       <Footer className={styles['login-footer']}>
         <div className={styles['footer-content']}>
