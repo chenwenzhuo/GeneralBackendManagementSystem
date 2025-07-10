@@ -50,12 +50,15 @@ export default function ResetPwdModal() {
     setStep(1);
     step1Form.resetFields();
     step2Form.resetFields();
+    setStep1FormData({ username: '', email: '' });
+    setStep2FormData({ password: '', passwordConfirm: '' });
   }
 
   function gotoStep(nextStep: number) {
     if (nextStep === 1) {
       step2Form.resetFields();
       setStep(nextStep);
+      setStep2FormData({ password: '', passwordConfirm: '' });
     } else if (nextStep === 2) {
       step1Form.validateFields().then(() => {
         setStep(nextStep);
