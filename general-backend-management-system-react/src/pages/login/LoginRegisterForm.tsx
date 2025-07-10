@@ -3,6 +3,7 @@ import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useValidationRules } from '@/pages/login/loginRegisterCommon.ts';
+import ResetPwdModal from '@/pages/login/ResetPwdModal.tsx';
 
 import styles from './LoginRegisterForm.module.scss';
 
@@ -91,7 +92,7 @@ export default function LoginRegisterForm({ formType, switchTab }: LoginRegister
 
       {formType === 'login' && (
         <Flex justify={'flex-end'}>
-          <Button type={'link'}>{t('login.content.forget')}</Button>
+          <ResetPwdModal />
         </Flex>
       )}
       <Button type={'primary'} size={'large'} className={styles['login-reg-button']}>
