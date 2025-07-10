@@ -47,10 +47,20 @@ export default function ResetPwdModal() {
 
   function closeModal() {
     setIsModalOpen(false);
+    setStep(1);
+    step1Form.resetFields();
+    step2Form.resetFields();
   }
 
   function gotoStep(nextStep: number) {
-    setStep(nextStep);
+    if (nextStep === 1) {
+      step2Form.resetFields();
+      setStep(nextStep);
+    } else if (nextStep === 2) {
+      step1Form.validateFields().then(() => {
+        setStep(nextStep);
+      });
+    }
   }
 
   return (
@@ -66,7 +76,12 @@ export default function ResetPwdModal() {
         maskClosable={false}
       >
         {step === 1 && (
-          <Form form={step1Form} layout={'vertical'} autoComplete={'off'}>
+          <Form
+            form={step1Form}
+            initialValues={{ username: '', email: '' }}
+            layout={'vertical'}
+            autoComplete={'off'}
+          >
             <FormItem
               name={'username'}
               label={t('login.content.username')}
@@ -94,7 +109,12 @@ export default function ResetPwdModal() {
           </Form>
         )}
         {step === 2 && (
-          <Form form={step2Form} layout={'vertical'} autoComplete={'off'}>
+          <Form
+            form={step2Form}
+            initialValues={{ password: '', passwordConfirm: '' }}
+            layout={'vertical'}
+            autoComplete={'off'}
+          >
             <FormItem
               name={'password'}
               label={t('login.content.password')}
