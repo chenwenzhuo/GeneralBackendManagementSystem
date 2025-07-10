@@ -24,7 +24,7 @@ export const useValidationRules = (formData?: Record<string, any>) => {
     ],
     email: [
       { required: true, message: t('login.content.required4'), validateTrigger: 'onBlur' },
-      { type: 'email', message: t('login.content.error5'), validateTrigger: 'onBlur' },
+      { type: 'email', message: t('login.content.error5'), validateTrigger: 'onChange' },
     ],
   };
 
