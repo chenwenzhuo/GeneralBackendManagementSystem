@@ -29,7 +29,8 @@ export default {
       required2: 'Empty password is not allowed',
       required3: 'Please repeat your password',
       required4: 'Empty email is not allowed',
-      success: 'Login successful',
+      success: 'success',
+      fail: 'fail',
       error1: 'Username or password error',
       error2:
         'The length of username and password should be no less than 6 digits, and no more than 16 digits',
