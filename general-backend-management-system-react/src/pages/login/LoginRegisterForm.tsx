@@ -1,7 +1,10 @@
-import { Button, Flex, Form, Input } from 'antd';
+import { Button, Flex, Form, Input, message } from 'antd';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router';
 
+import type { LoginRegisterDataType } from '@/api/LoginRegister.ts';
+import { login, register } from '@/api/LoginRegister.ts';
 import { useValidationRules } from '@/pages/login/loginRegisterCommon.ts';
 import ResetPwdModal from '@/pages/login/ResetPwdModal.tsx';
 
@@ -24,10 +27,13 @@ type FormRules = Record<keyof LoginRegisterFormData, any[]>;
 
 const { Item: FormItem } = Form;
 const { Password } = Input;
+const actionMap = { login, register };
 
 export default function LoginRegisterForm({ formType, switchTab }: LoginRegisterFormProps) {
-  const { t } = useTranslation();
-  const [form] = Form.useForm();
+  const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
+  const [messageApi, contextHolder] = message.useMessage();
+  const [loginRegisterForm] = Form.useForm();
   const [formData, setFormData] = useState<LoginRegisterFormData>({
     username: '',
     password: '',
@@ -47,9 +53,29 @@ export default function LoginRegisterForm({ formType, switchTab }: LoginRegister
     setFormData((prev) => ({ ...prev, [fieldName]: value }));
   }
 
+  function handleSubmit() {
+    loginRegisterForm.validateFields().then(async (values) => {
+      console.log(values);
+      const { username, password } = values;
+      const data: LoginRegisterDataType = { username, password };
+
+      const res: any = await actionMap[formType](data);
+      const space = i18n.language === 'zh' ? '' : ' ';
+      if (res.status === 0) {
+        messageApi.success(
+          `${t('login.content.' + formType)}${space}${t('login.content.success')}`,
+        );
+        formType === 'login' && navigate('/admin', { replace: true });
+      } else {
+        messageApi.error(`${t('login.content.' + formType)}${space}${t('login.content.fail')}`);
+      }
+    });
+  }
+
   return (
     <>
-      <Form layout={'vertical'} form={form} autoComplete={'off'}>
+      {contextHolder} {/* 必须放在组件中，用于挂载 message 容器 */}
+      <Form layout={'vertical'} form={loginRegisterForm} autoComplete={'off'}>
         <FormItem
           name={'username'}
           label={t('login.content.username')}
@@ -89,13 +115,17 @@ export default function LoginRegisterForm({ formType, switchTab }: LoginRegister
           </FormItem>
         )}
       </Form>
-
       {formType === 'login' && (
         <Flex justify={'flex-end'}>
           <ResetPwdModal />
         </Flex>
       )}
-      <Button type={'primary'} size={'large'} className={styles['login-reg-button']}>
+      <Button
+        type={'primary'}
+        size={'large'}
+        className={styles['login-reg-button']}
+        onClick={handleSubmit}
+      >
         {t(`login.content.${formType}`)}
       </Button>
       {formType === 'login' && (
