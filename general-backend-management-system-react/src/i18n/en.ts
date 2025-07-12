@@ -4,7 +4,7 @@ export default {
     welcome: 'Welcome to the Vue3 project!',
     home: 'Home',
     about: 'About',
-    title: 'General Backend Management System',
+    title: 'GBMS',
     settings: 'Settings',
   },
   login: {
