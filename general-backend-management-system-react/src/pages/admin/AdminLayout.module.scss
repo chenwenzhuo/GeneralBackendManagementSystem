@@ -1,0 +1,49 @@
+.admin-layout {
+  width: 100%;
+  height: 100%;
+
+  .sider {
+    width: 200px;
+    height: 100%;
+
+    .title {
+      width: 100%;
+      height: 64px;
+      line-height: 64px;
+      text-align: center;
+      font-size: 16px;
+      font-weight: bold;
+      color: #fff;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .menu {
+      width: 100%;
+      height: calc(100% - 64px);
+      overflow-y: auto;
+    }
+  }
+
+  .content-layout {
+    .header {
+      width: 100%;
+      height: 64px;
+      background-color: #fff;
+    }
+
+    .content {
+      width: 100%;
+      height: calc(100% - 64px);
+      padding: 20px;
+      background-color: #f3f3f3;
+
+      .content-inner {
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        border-radius: 8px;
+        overflow-y: auto;
+      }
+    }
+  }
+}
