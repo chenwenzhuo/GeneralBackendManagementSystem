@@ -2,6 +2,7 @@ import { Layout } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { Outlet } from 'react-router';
 
+import NavHeader from '@/components/nav-header/NavHeader.tsx';
 import NavMenu from '@/components/nav-menu/NavMenu.tsx';
 
 import styles from './AdminLayout.module.scss';
@@ -20,7 +21,9 @@ export default function AdminLayout() {
         </div>
       </Sider>
       <Layout className={styles['content-layout']}>
-        <Header className={styles['header']}>Header</Header>
+        <Header className={styles['header']}>
+          <NavHeader />
+        </Header>
         <Content className={styles['content']}>
           <div className={styles['content-inner']}>
             <Outlet />
