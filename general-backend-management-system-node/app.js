@@ -22,9 +22,6 @@ app.use((req, res, next) => {
   next();
 });
 
-const regLoginRouter = require('./router/reg_login');
-app.use('/api', regLoginRouter);
-
 const jwtConfig = require('./jwt_config');
 const { expressjwt } = require('express-jwt');
 app.use(
@@ -34,15 +31,25 @@ app.use(
   }).unless({ path: [/^\/api\//] }),
 );
 
-// 对不符合joi规则的情况进行报错
-app.use((err, req, res, next) => {
+const regLoginRouter = require('./router/reg_login');
+app.use('/api', regLoginRouter);
+
+// 导入用户信息路由
+const userInfoRouter = require('./router/user_info');
+app.use(express.static('./public')); // 启用 Express 的静态文件服务中间件，将 ./public 目录设置为静态资源根目录
+app.use('/user', userInfoRouter);
+
+app.use((err, req, res) => {
   if (err instanceof Joi.ValidationError) {
-    res.send({
-      status: 1,
-      message: '输入的数据不符合验证规则',
-    });
+    return res.cc('输入的数据不符合验证规则');
   }
-  next();
+  // 处理 token 校验失败（express-jwt 抛出的）
+  if (err.name === 'UnauthorizedError') {
+    console.log('token校验失败', err);
+    return res.status(401).cc('身份认证失败！');
+  }
+  // 其他未知错误
+  return res.cc(err);
 });
 
 app.get('/', (req, res) => {
