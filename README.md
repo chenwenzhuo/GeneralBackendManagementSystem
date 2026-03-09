@@ -47,7 +47,7 @@ general-backend-management-system-node/
 1. 安装依赖：
 ```bash
 cd general-backend-management-system-node
-npm install
+pnpm install
 ```
 
 2. 配置环境变量：
@@ -57,23 +57,23 @@ cp .env.example .env
 
 3. 开发模式（自动重启）：
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 4. 生产模式：
 ```bash
-npm run build
-npm start
+pnpm run build
+pnpm start
 ```
 
 服务将在 `http://localhost:3000` 启动。
 
 ### 可用脚本
 
-- `npm run dev` - 开发模式，使用nodemon自动重启
-- `npm run build` - 编译TypeScript代码
-- `npm run type-check` - 类型检查，不生成文件
-- `npm start` - 生产模式，运行编译后的代码
+- `pnpm run dev` - 开发模式，使用nodemon自动重启
+- `pnpm run build` - 编译TypeScript代码
+- `pnpm run type-check` - 类型检查，不生成文件
+- `pnpm start` - 生产模式，运行编译后的代码
 
 ## 开发计划
 
