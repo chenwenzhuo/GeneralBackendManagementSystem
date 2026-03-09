@@ -8,8 +8,8 @@ export const healthCheck = (_req: Request, res: Response): void => {
       message: 'Welcome to General Backend Management System',
       version: '1.0.0',
       status: 'running',
-      timestamp: new Date().toISOString()
-    }
+      timestamp: new Date().toISOString(),
+    },
   };
   res.json(response);
 };
@@ -22,9 +22,9 @@ export const getApiInfo = (_req: Request, res: Response): void => {
       version: '1.0.0',
       endpoints: [
         { method: 'GET', path: '/', description: 'Health check' },
-        { method: 'GET', path: '/api/info', description: 'API information' }
-      ]
-    }
+        { method: 'GET', path: '/api/info', description: 'API information' },
+      ],
+    },
   };
   res.json(response);
 };

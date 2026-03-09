@@ -22,6 +22,8 @@ GeneralBackendManagementSystem/
 - Express
 - CORS
 - dotenv
+- ESLint
+- Prettier
 
 ### 目录结构
 ```
@@ -36,7 +38,9 @@ general-backend-management-system-node/
 │   └── utils/            # 工具函数
 ├── dist/                 # 编译输出目录
 ├── .env.example          # 环境变量示例
-├── .gitignore
+├── .prettierrc           # Prettier配置
+├── .prettierignore       # Prettier忽略配置
+├── eslint.config.mjs     # ESLint配置
 ├── tsconfig.json         # TypeScript配置
 ├── nodemon.json          # 开发服务器配置
 └── package.json
@@ -73,6 +77,10 @@ pnpm start
 - `pnpm run dev` - 开发模式，使用nodemon自动重启
 - `pnpm run build` - 编译TypeScript代码
 - `pnpm run type-check` - 类型检查，不生成文件
+- `pnpm run lint` - 运行ESLint检查代码质量
+- `pnpm run lint:fix` - 自动修复ESLint问题
+- `pnpm run format` - 使用Prettier格式化代码
+- `pnpm run format:check` - 检查代码格式
 - `pnpm start` - 生产模式，运行编译后的代码
 
 ## 开发计划
