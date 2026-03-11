@@ -8,6 +8,7 @@
 GeneralBackendManagementSystem/
 ├── general-backend-management-system-node/  # Node.js后端项目
 ├── general-backend-management-system-vue/    # Vue 3前端项目
+├── general-backend-management-system-react/   # React前端项目
 ├── .gitignore
 └── README.md
 ```
@@ -121,6 +122,46 @@ pnpm run build
 - `pnpm run lint:fix` - 自动修复ESLint问题
 - `pnpm run format` - 使用Prettier格式化代码
 - `pnpm run format:check` - 检查代码格式
+
+## React前端项目
+
+React前端项目位于 `general-backend-management-system-react/` 目录，使用 React + TypeScript + Vite 框架。
+
+### 技术栈
+- React 19
+- TypeScript
+- Vite
+- ESLint
+- Prettier
+- React Compiler
+
+### 快速开始
+
+1. 安装依赖：
+```bash
+cd general-backend-management-system-react
+pnpm install
+```
+
+2. 启动开发服务器：
+```bash
+pnpm run dev
+```
+
+3. 构建生产版本：
+```bash
+pnpm run build
+```
+
+### 可用脚本
+
+- `pnpm run dev` - 启动开发服务器
+- `pnpm run build` - 构建生产版本
+- `pnpm run lint` - 运行ESLint检查代码质量
+- `pnpm run lint:fix` - 自动修复ESLint问题
+- `pnpm run format` - 使用Prettier格式化代码
+- `pnpm run format:check` - 检查代码格式
+- `pnpm run preview` - 预览生产构建
 
 ## 开发计划
 
